@@ -1,5 +1,5 @@
 
-CROSS_COMPILE ?= riscv64-unknown-elf-
+CROSS_COMPILE ?= /home/jingyu/hypervisor/riscv64-unknown-elf-toolchain-10.2.0-2020.12.8-x86_64-linux-ubuntu14/bin/riscv64-unknown-elf-
 CC:=$(CROSS_COMPILE)gcc
 AS:=$(CROSS_COMPILE)as
 LD:=$(CROSS_COMPILE)ld
@@ -25,7 +25,7 @@ endif
 
 prev_log_file:=$(build_dir)/prev_log.mk
 -include $(prev_log_file)
-LOG_LEVEL ?= LOG_INFO
+LOG_LEVEL ?= LOG_DETAIL
 GENERIC_FLAGS += -D LOG_LEVEL=$(LOG_LEVEL)
 $(file > $(prev_log_file), PREV_LOG_LEVEL:=$(LOG_LEVEL))
 ifneq ($(PREV_LOG_LEVEL), $(LOG_LEVEL))

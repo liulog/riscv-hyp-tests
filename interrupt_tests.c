@@ -7,12 +7,15 @@ bool check_xip_regs(){
     CSRW(mideleg, 0);
 
     int64_t mtime_mask = ~((int64_t)0x80);
-
+    // 这里将 mideleg 写入全 1 
     CSRW(mideleg, (uint64_t)-1);
     VERBOSE("setting mideleg and hideleg\n");
+    goto_priv(PRIV_HS);
+    // 这里将 hideleg 写入全 1
     CSRW(CSR_HIDELEG, (uint64_t)-1);
-    check_csr_wrrd("vsip", CSR_VSIP, (uint64_t) -1, 0x2);
+    check_csr_wrrd("vsip", CSR_VSIP, (uint64_t) -1, 0x2);       // 进入时 M mode
     check_csr_wrrd("vsie", CSR_VSIE, (uint64_t) -1, 0x222);
+    while(1){}
 
     VERBOSE("setting all in mip\n");
     CSRW(mip, (uint64_t)-1);

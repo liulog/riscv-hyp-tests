@@ -161,8 +161,23 @@ bool tinst_tests(){
         TINST_CHECK(TINST_AMO)
     );
 
-    TEST_SETUP_EXCEPT();
-    value = sc_w(vaddr_f, value);
+    // #define TEST_SETUP_EXCEPT() {\
+    //     __sync_synchronize();\
+    //     excpt.testing = true;\
+    //     excpt.triggered = false;\
+    //     excpt.fault_inst = 0;\
+    //     __sync_synchronize();\
+    //     DEBUG("setting up exception test");\
+    // }
+
+    // asm volatile(
+    //     "sc.w    %0, %0, 0(%1)\n\t"
+    //     : "+r"(value) : "r"(addr): "memory"
+    // );
+
+    // 此时在 hs 模式
+    TEST_SETUP_EXCEPT();            // 初始化 testing、triggered、fualt_inst
+    value = sc_w(vaddr_f, value);   // 执行 sc.w 指令, 将结果写入 value, 会触发 spf
     TEST_ASSERT("correct tinst when executing a sc.w which results in a spf",
         excpt.triggered == true && 
         excpt.cause == CAUSE_SPF &&

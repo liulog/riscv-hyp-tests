@@ -277,9 +277,9 @@ uint64_t hshandler(){
         CSRC(CSR_HIP, 1ULL << (cause &  ~(1ULL << 63)));
     }
 
-    excpt.triggered = true;
-    excpt.priv = PRIV_HS;
-    excpt.cause = cause;
+    excpt.triggered = true;                                                     // 是否触发异常
+    excpt.priv = PRIV_HS;                                                       // 出发异常时的特权级
+    excpt.cause = cause;                                                        // 异常原因
     excpt.epc = epc;
     excpt.tval = tval;
     excpt.tinst = htinst;

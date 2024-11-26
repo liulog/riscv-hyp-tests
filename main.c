@@ -64,11 +64,13 @@ bool check_misa_h(){
 }
 
 void main(){
+    printf("hello world\n");
 
     INFO("risc-v hypervisor extensions tests");
 
     if(check_misa_h()){
         reset_state();
+        // 调用 test_table 中的所有测试函数
         for(int i = 0; i < test_table_size; i++)
             test_table[i]();
     }
