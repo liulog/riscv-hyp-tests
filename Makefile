@@ -25,7 +25,7 @@ endif
 
 prev_log_file:=$(build_dir)/prev_log.mk
 -include $(prev_log_file)
-LOG_LEVEL ?= LOG_DETAIL
+LOG_LEVEL ?= LOG_VERBOSE
 GENERIC_FLAGS += -D LOG_LEVEL=$(LOG_LEVEL)
 $(file > $(prev_log_file), PREV_LOG_LEVEL:=$(LOG_LEVEL))
 ifneq ($(PREV_LOG_LEVEL), $(LOG_LEVEL))

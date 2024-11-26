@@ -64,7 +64,6 @@ bool check_misa_h(){
 }
 
 void main(){
-    printf("hello world\n");
 
     INFO("risc-v hypervisor extensions tests");
 
@@ -76,5 +75,8 @@ void main(){
     }
 
     INFO("end");
+
+    while(true){ }
+
     exit(0);
 }

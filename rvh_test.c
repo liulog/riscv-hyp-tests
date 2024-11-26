@@ -209,6 +209,7 @@ uint64_t mhandler(){
     DEBUG("mpv = 0x%lx", (CSRR(mstatus) >> 39) & 0x1);
     DEBUG("gva = 0x%lx", (CSRR(mstatus) >> MSTATUS_GVA_OFF) & 0x1);
 
+    // 是这里出现了问题, 必须是 ecall 并且 ecall_args[0] == ECALL_GOTO_PRIV
     if(is_ecall(cause) && ecall_args[0] == ECALL_GOTO_PRIV){
         goto_priv(ecall_args[1]); 
     } else if(!excpt.testing){

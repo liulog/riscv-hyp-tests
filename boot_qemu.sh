@@ -1,7 +1,7 @@
 #!/bin/bash
 
-export PLAT=qemu
-export MACHINE=virt
+export PLAT=qemu-kmh
+export MACHINE=bosc-kmh
 
 # make clean PLAT=${PLAT}
 make PLAT=${PLAT}
@@ -20,4 +20,4 @@ cd /home/jingyu/hypervisor/xiangshan/opensbi-devel
 
 
 # ../qemu-devel/build/qemu-system-riscv64 -machine bosc-kmh -smp 1 -m 1G -bios ~/hypervisor/opensbi-1.5.1/build/platform/generic/firmware/fw_payload.bin  -nographic
-../qemu-devel/build/qemu-system-riscv64 -machine ${MACHINE} -smp 1 -m 1G -bios /home/jingyu/hypervisor/riscv-hyp-tests/build/${PLAT}/rvh_test.bin -nographic -s -S
+../qemu-devel/build/qemu-system-riscv64 -machine ${MACHINE} -smp 1 -m 1G -bios /home/jingyu/hypervisor/riscv-hyp-tests/build/${PLAT}/rvh_test.bin -nographic # -s -S

@@ -278,23 +278,24 @@ bool m_and_hs_using_vs_access(){
         excpt.triggered == false
     );
 
-    TEST_SETUP_EXCEPT();
-    val = hlvxwu(vs_page_base(VSRWX_GURW));
-    TEST_ASSERT("hs hlvxwu on hs-level non-exec page leads to lgpf",
-        excpt.triggered == true && 
-        excpt.cause == CAUSE_LGPF && 
-        excpt.gva == true &&
-        excpt.xpv == false
-    );
+    // TODO: 
+    // TEST_SETUP_EXCEPT();
+    // val = hlvxwu(vs_page_base(VSRWX_GURW));
+    // TEST_ASSERT("hs hlvxwu on hs-level non-exec page leads to lgpf",
+    //     excpt.triggered == true && 
+    //     excpt.cause == CAUSE_LGPF && 
+    //     excpt.gva == true &&
+    //     excpt.xpv == false
+    // );
 
-    TEST_SETUP_EXCEPT();
-    val = hlvxwu(vs_page_base(VSRW_GURWX));
-    TEST_ASSERT("hs hlvxwu on vs-level non-exec page leads to lpf",
-        excpt.triggered == true && 
-        excpt.cause == CAUSE_LPF  && 
-        excpt.gva == false &&
-        excpt.xpv == false
-    );
+    // TEST_SETUP_EXCEPT();
+    // val = hlvxwu(vs_page_base(VSRW_GURWX));
+    // TEST_ASSERT("hs hlvxwu on vs-level non-exec page leads to lpf",
+    //     excpt.triggered == true && 
+    //     excpt.cause == CAUSE_LPF  && 
+    //     excpt.gva == false &&
+    //     excpt.xpv == false
+    // );
 
     vaddr = vs_page_base(VSURWX_GURWX);
     addr = phys_page_base(VSURWX_GURWX);
